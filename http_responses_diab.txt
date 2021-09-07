@@ -1,0 +1,98 @@
+STEP 2:
+
+GET http://127.0.0.1:5000/todo HTTP/1.1
+Authorization: Basic bWFjYWxlc3RlcjpzY290cw==
+
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 377
+Server: Werkzeug/2.0.1 Python/3.9.7
+Date: Tue, 07 Sep 2021 13:45:13 GMT
+
+{
+  "tasks": [
+    {
+      "description": "Milk, Cheese, Pizza, Fruit, Tylenol",
+      "done": false,
+      "title": "Buy groceries",
+      "uri": "http://127.0.0.1:5000/todo/1"
+    },
+    {
+      "description": "Need to find a good Python tutorial on the web",
+      "done": false,
+      "title": "Learn Python",
+      "uri": "http://127.0.0.1:5000/todo/2"
+    }
+  ]
+}
+
+STEP 3:
+
+POST http://127.0.0.1:5000/todo HTTP/1.1
+Authorization: Basic bWFjYWxlc3RlcjpzY290cw==
+Content-Length: 98
+Content-Type: application/json
+
+{
+  "title": "organize room",
+  "description": "come up with a good system to put away all my things"
+}
+
+HTTP/1.0 201 CREATED
+Content-Type: application/json
+Content-Length: 189
+Server: Werkzeug/2.0.1 Python/3.9.7
+Date: Tue, 07 Sep 2021 13:53:28 GMT
+
+{
+  "task": {
+    "description": "come up with a good system to put away all my things",
+    "done": false,
+    "title": "organize room",
+    "uri": "http://127.0.0.1:5000/todo/3"
+  }
+}
+
+STEP 4:
+
+PUT http://127.0.0.1:5000/todo/1 HTTP/1.1
+Authorization: Basic bWFjYWxlc3RlcjpzY290cw==
+Content-Length: 14
+Content-Type: application/json
+
+{
+  "done": true
+}
+
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 171
+Server: Werkzeug/2.0.1 Python/3.9.7
+Date: Tue, 07 Sep 2021 14:14:06 GMT
+
+{
+  "task": {
+    "description": "Milk, Cheese, Pizza, Fruit, Tylenol",
+    "done": true,
+    "title": "Buy groceries",
+    "uri": "http://127.0.0.1:5000/todo/1"
+  }
+}
+
+STEP 5:
+
+DELETE http://127.0.0.1:5000/todo/2 HTTP/1.1
+Authorization: Basic bWFjYWxlc3RlcjpzY290cw==
+Content-Type: application/json
+Content-Length: 0
+
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 21
+Server: Werkzeug/2.0.1 Python/3.9.7
+Date: Tue, 07 Sep 2021 14:16:00 GMT
+
+{
+  "result": true
+}
+
